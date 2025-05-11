@@ -2,8 +2,6 @@
 
 This task focuses on writing SQL queries to define the database schema for the Airbnb system.
 
----
-
 ## Objective
 
 - Write `CREATE TABLE` SQL statements for all entities based on the provided specification.

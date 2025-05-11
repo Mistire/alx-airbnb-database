@@ -5,7 +5,6 @@
 
 Ensure the Airbnb database schema adheres to **Third Normal Form (3NF)** by eliminating redundancy and ensuring all non-key attributes are fully functionally dependent on the primary key and nothing else.
 
----
 
 ## Step-by-Step Normalization Process
 
@@ -18,7 +17,6 @@ Ensure the Airbnb database schema adheres to **Third Normal Form (3NF)** by elim
 
 **All tables use atomic attributes.** No multi-valued or repeating fields are present.
 
----
 
 ### **Second Normal Form (2NF)**
 
@@ -29,7 +27,6 @@ Ensure the Airbnb database schema adheres to **Third Normal Form (3NF)** by elim
 
 All tables have a single-column primary key (no composite keys), so they automatically satisfy 2NF.
 
----
 
 ### **Third Normal Form (3NF)**
 
@@ -82,9 +79,8 @@ All tables have a single-column primary key (no composite keys), so they automat
 * `sender_id`, `recipient_id`, and `message_body` depend on `message_id`.
 * **In 3NF**
 
----
 
-## 🛠 Suggested Improvements (Optional Optimizations)
+## Suggested Improvements (Optional Optimizations)
 
 While the schema is already in 3NF, here are optional adjustments:
 

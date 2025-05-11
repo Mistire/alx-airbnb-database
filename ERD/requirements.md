@@ -1,1 +1,90 @@
-# Users Table\nTable User {\n  user_id UUID [pk, unique, note: 'Primary Key']\n  first_name VARCHAR [not null]\n  last_name VARCHAR [not null]\n  email VARCHAR [not null, unique, note: 'Indexed']\n  password_hash VARCHAR [not null]\n  phone_number VARCHAR\n  role ENUM('guest', 'host', 'admin') [not null]\n  created_at TIMESTAMP [default: 'now()']\n}\n\n# Properties Table\nTable Property {\n  property_id UUID [pk, unique, note: 'Primary Key']\n  host_id UUID [not null, ref: > User.user_id]\n  name VARCHAR [not null]\n  description TEXT [not null]\n  location VARCHAR [not null]\n  pricepernight DECIMAL [not null]\n  created_at TIMESTAMP [default: 'now()']\n  updated_at TIMESTAMP\n}\n\n// Bookings Table\nTable Booking {\n  booking_id UUID [pk, unique, note: 'Primary Key']\n  property_id UUID [not null, ref: > Property.property_id]\n  user_id UUID [not null, ref: > User.user_id]\n  start_date DATE [not null]\n  end_date DATE [not null]\n  total_price DECIMAL [not null]\n  status ENUM('pending', 'confirmed', 'canceled') [not null]\n  created_at TIMESTAMP [default: 'now()']\n}\n\n# Payments Table\nTable Payment {\n  payment_id UUID [pk, unique, note: 'Primary Key']\n  booking_id UUID [not null, ref: > Booking.booking_id]\n  amount DECIMAL [not null]\n  payment_date TIMESTAMP [default: 'now()']\n  payment_method ENUM('credit_card', 'paypal', 'stripe') [not null]\n}\n\n# Reviews Table\nTable Review {\n  review_id UUID [pk, unique, note: 'Primary Key']\n  property_id UUID [not null, ref: > Property.property_id]\n  user_id UUID [not null, ref: > User.user_id]\n  rating INTEGER [not null, note: 'Must be between 1 and 5']\n  comment TEXT [not null]\n  created_at TIMESTAMP [default: 'now()']\n}\n\n# Messages Table\nTable Message {\n  message_id UUID [pk, unique, note: 'Primary Key']\n  sender_id UUID [not null, ref: > User.user_id]\n  recipient_id UUID [not null, ref: > User.user_id]\n  message_body TEXT [not null]\n  sent_at TIMESTAMP [default: 'now()']\n
+## Database Schema – Airbnb-Style Booking Platform
+
+###‍ Users Table
+
+| Column          | Type                           | Constraints               |
+| --------------- | ------------------------------ | ------------------------- |
+| `user_id`       | UUID                           | Primary Key, Unique       |
+| `first_name`    | VARCHAR                        | Not Null                  |
+| `last_name`     | VARCHAR                        | Not Null                  |
+| `email`         | VARCHAR                        | Not Null, Unique, Indexed |
+| `password_hash` | VARCHAR                        | Not Null                  |
+| `phone_number`  | VARCHAR                        | Nullable                  |
+| `role`          | ENUM(`guest`, `host`, `admin`) | Not Null                  |
+| `created_at`    | TIMESTAMP                      | Default: `now()`          |
+
+---
+
+### Property Table
+
+| Column          | Type      | Constraints                    |
+| --------------- | --------- | ------------------------------ |
+| `property_id`   | UUID      | Primary Key, Unique            |
+| `host_id`       | UUID      | FK → User(`user_id`), Not Null |
+| `name`          | VARCHAR   | Not Null                       |
+| `description`   | TEXT      | Not Null                       |
+| `location`      | VARCHAR   | Not Null                       |
+| `pricepernight` | DECIMAL   | Not Null                       |
+| `created_at`    | TIMESTAMP | Default: `now()`               |
+| `updated_at`    | TIMESTAMP | Optional                       |
+
+---
+
+### Booking Table
+
+| Column        | Type                                     | Constraints                  |
+| ------------- | ---------------------------------------- | ---------------------------- |
+| `booking_id`  | UUID                                     | Primary Key, Unique          |
+| `property_id` | UUID                                     | FK → Property(`property_id`) |
+| `user_id`     | UUID                                     | FK → User(`user_id`)         |
+| `start_date`  | DATE                                     | Not Null                     |
+| `end_date`    | DATE                                     | Not Null                     |
+| `total_price` | DECIMAL                                  | Not Null                     |
+| `status`      | ENUM(`pending`, `confirmed`, `canceled`) | Not Null                     |
+| `created_at`  | TIMESTAMP                                | Default: `now()`             |
+
+---
+
+### Payment Table
+
+| Column           | Type                                    | Constraints                |
+| ---------------- | --------------------------------------- | -------------------------- |
+| `payment_id`     | UUID                                    | Primary Key, Unique        |
+| `booking_id`     | UUID                                    | FK → Booking(`booking_id`) |
+| `amount`         | DECIMAL                                 | Not Null                   |
+| `payment_date`   | TIMESTAMP                               | Default: `now()`           |
+| `payment_method` | ENUM(`credit_card`, `paypal`, `stripe`) | Not Null                   |
+
+---
+
+### Review Table
+
+| Column        | Type      | Constraints                  |
+| ------------- | --------- | ---------------------------- |
+| `review_id`   | UUID      | Primary Key, Unique          |
+| `property_id` | UUID      | FK → Property(`property_id`) |
+| `user_id`     | UUID      | FK → User(`user_id`)         |
+| `rating`      | INTEGER   | 1–5 range enforced, Not Null |
+| `comment`     | TEXT      | Not Null                     |
+| `created_at`  | TIMESTAMP | Default: `now()`             |
+
+---
+
+### Message Table
+
+| Column         | Type      | Constraints          |
+| -------------- | --------- | -------------------- |
+| `message_id`   | UUID      | Primary Key, Unique  |
+| `sender_id`    | UUID      | FK → User(`user_id`) |
+| `recipient_id` | UUID      | FK → User(`user_id`) |
+| `message_body` | TEXT      | Not Null             |
+| `sent_at`      | TIMESTAMP | Default: `now()`     |
+
+---
+
+### Additional Notes
+
+* **Primary Keys** are indexed automatically.
+* **Foreign Keys** ensure referential integrity across all relational tables.
+* **Defaults** like `now()` are used to capture timestamps consistently.
+

@@ -1,6 +1,6 @@
 ## Database Schema – Airbnb-Style Booking Platform
 
-###‍ Users Table
+### Users Table
 
 | Column          | Type                           | Constraints               |
 | --------------- | ------------------------------ | ------------------------- |
@@ -81,10 +81,3 @@
 | `sent_at`      | TIMESTAMP | Default: `now()`     |
 
 ---
-
-### Additional Notes
-
-* **Primary Keys** are indexed automatically.
-* **Foreign Keys** ensure referential integrity across all relational tables.
-* **Defaults** like `now()` are used to capture timestamps consistently.
-

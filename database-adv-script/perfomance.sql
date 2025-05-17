@@ -1,3 +1,4 @@
+--WHERE AND
 --Intial query
 SELECT
 u.user_id,

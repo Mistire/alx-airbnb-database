@@ -23,6 +23,7 @@ Review.comment
 
 FROM Property
 LEFT JOIN Review ON Property.property_id = Review.property_id;
+ORDER BY Review.rating DESC;
 
 
 --FULL OUTER JOIN

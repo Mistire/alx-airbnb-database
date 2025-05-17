@@ -1,12 +1,18 @@
-# SQL Index Optimization – Airbnb Clone
+# Index Performance Report – Airbnb Clone
 
-## Objective
+## Introduction
 
-Optimize SQL query performance by identifying frequently queried columns and creating appropriate indexes.
+This report summarizes the performance impact of adding indexes to the most frequently queried columns in the Airbnb Clone database. Indexes were added to columns commonly used in JOINs, WHERE, and ORDER BY clauses.
 
-## Task Description
+---
 
-In this task, we:
+## Indexed Columns and Reasoning
 
-* Created SQL indexes using the `CREATE INDEX` statement to speed up query execution.
-* Measured performance improvements before and after indexing using `EXPLAIN` or `ANALYZE`.
+| Table     | Column        | Reason for Indexing                          |
+|-----------|---------------|----------------------------------------------|
+| Booking   | user_id       | Used in JOINs and WHERE clauses              |
+| Booking   | property_id   | Used in JOINs with Property table            |
+| Review    | property_id   | Used in JOINs with Property table            |
+| Property  | location      | Frequently filtered during searches          |
+| Booking   | created_at    | Often sorted or filtered by booking date     |
+

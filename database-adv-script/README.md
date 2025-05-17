@@ -1,16 +1,21 @@
-
-# SQL Join Queries – Airbnb Clone
+# Advanced SQL Queries – Airbnb Clone
 
 ## Objective
 
-The goal of this task is to master SQL join operations by writing complex queries that combine data from multiple related tables in the Airbnb Clone database.
+Practice complex SQL operations such as joins, aggregations, and window functions on the Airbnb Clone database.
 
-## Task Description
+## Description
 
-This directory contains SQL queries using different types of joins to:
+This directory includes two main tasks:
 
-- Retrieve bookings with the users who made them (INNER JOIN).
-- Retrieve all properties and their associated reviews, including those without reviews (LEFT JOIN).
-- Retrieve all users and all bookings, even if they are not linked (FULL OUTER JOIN).
+### 1. SQL Join Queries
 
+* **INNER JOIN** – Retrieve all bookings with the users who made them.
+* **LEFT JOIN** – List all properties and their reviews, including properties with no reviews.
+* **FULL OUTER JOIN** – Show all users and all bookings, even if they are not linked.
+
+### 2. Aggregations and Window Functions
+
+* **Aggregations** – Count the total number of bookings per user using `COUNT()` and `GROUP BY`.
+* **Window Functions** – Rank properties based on total bookings using `RANK()` or `ROW_NUMBER()`.
 

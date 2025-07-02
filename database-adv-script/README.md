@@ -32,3 +32,9 @@ Write a query to find all properties where the average review rating is greater 
 
 Write a query to find all users who have made more than 3 bookings using a subquery that references the outer query.
 
+## Task - 2: Apply Aggregations and Window Functions
+### Aggregate Function
+Write a query to find the total number of bookings made by each user, using the COUNT function and GROUP BY clause.
+
+### Window Function
+Use a window function (ROW_NUMBER, RANK) to rank properties based on the total number of bookings they have received.

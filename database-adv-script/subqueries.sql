@@ -1,4 +1,5 @@
 -- Write a query to find all properties where the average rating is greater than 4.0 using a subquery.
+-- WHERE
 SELECT
   p.property_id,
   p.name,

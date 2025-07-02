@@ -1,3 +1,4 @@
 .env
-*.sql
+intial.sql
+insert.sql
 .vscode/

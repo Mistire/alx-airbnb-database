@@ -15,6 +15,7 @@ SELECT
   Review.review_id,
   Review.rating
 FROM Property LEFT JOIN Review ON Property.property_id = Review.property_id
+ORDER BY Property.property_id
 
 -- OUTER JOIN
 SELECT 

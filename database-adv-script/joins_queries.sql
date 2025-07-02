@@ -24,14 +24,14 @@ SELECT
   Booking.booking_id,
   Booking.start_date,
   Booking.end_date
-FROM User LEFT JOIN Booking ON User.user_id = Booking.user_id
+FROM User OUTER JOIN Booking ON User.user_id = Booking.user_id
 
-UNION
+-- UNION
 
-SELECT 
-  Booking.booking_id,
-  Booking.start_date, 
-  Booking.end_date,
-  User.user_id,
-  User.email
-FROM Booking INNER JOIN User ON Booking.user_id = User.user_id;
+-- SELECT 
+--   Booking.booking_id,
+--   Booking.start_date, 
+--   Booking.end_date,
+--   User.user_id,
+--   User.email
+-- FROM Booking INNER JOIN User ON Booking.user_id = User.user_id;

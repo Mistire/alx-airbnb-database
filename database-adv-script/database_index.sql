@@ -1,5 +1,8 @@
+DROP INDEX IF EXISTS idx_user_id;
+DROP INDEX IF EXISTS idx_booking_id;
+
 -- FULL OUTER JOIN
-SELECT 
+EXPLAIN ANALYZE SELECT 
   User.user_id,
   User.email,
   Booking.booking_id,
@@ -9,7 +12,7 @@ FROM User LEFT JOIN Booking ON User.user_id = Booking.user_id
 
 UNION
 
-SELECT 
+EXPLAIN ANALYZE SELECT 
   Booking.booking_id,
   Booking.start_date, 
   Booking.end_date,
